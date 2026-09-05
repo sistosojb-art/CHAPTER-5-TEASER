@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#090612">
+<title>The Man Who Stayed — Chapter V Teaser</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#07050d;color:#fff}
+body{
+  font-family:Montserrat,Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+.scene{
+  position:fixed;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 1.7s ease, visibility 1.7s ease;
+  overflow:hidden;
+}
+.scene.active{opacity:1;visibility:visible}
+
+.sky{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(119,74,150,.28),transparent 34%),
+    radial-gradient(circle at 20% 70%,rgba(71,44,104,.20),transparent 30%),
+    linear-gradient(180deg,#090711 0%,#151021 48%,#08060d 100%);
+}
+.sky:after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,transparent 20%,rgba(0,0,0,.55) 100%);
+}
+.stars,.stars2{position:absolute;inset:0;overflow:hidden}
+.star{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  background:#fff;box-shadow:0 0 7px 1px rgba(255,255,255,.8);
+  animation:twinkle 3s ease-in-out infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:.2;transform:scale(.7)}
+  50%{opacity:1;transform:scale(1.4)}
+}
+.moon{
+  position:absolute;width:130px;height:130px;border-radius:50%;
+  right:-35px;top:11%;
+  background:radial-gradient(circle at 35% 35%,#fff,#ddd8e8 58%,#918aa0 100%);
+  box-shadow:0 0 35px rgba(235,222,255,.25);
+  opacity:.55;
+}
+.horizon{
+  position:absolute;left:-5%;right:-5%;bottom:15%;
+  height:22%;background:#030207;
+  clip-path:polygon(0 65%,4% 58%,8% 67%,13% 50%,18% 62%,24% 45%,30% 60%,37% 51%,43% 63%,49% 48%,56% 60%,63% 43%,70% 57%,77% 49%,84% 62%,91% 47%,100% 58%,100% 100%,0 100%);
+}
+.reflection{
+  position:absolute;left:0;right:0;bottom:-3%;height:27%;
+  background:linear-gradient(180deg,rgba(28,20,40,.15),rgba(2,1,5,.95));
+  transform:scaleY(-1);opacity:.7;
+  filter:blur(2px);
+}
+.tree{position:absolute;bottom:13%;width:2px;background:#030207;transform-origin:bottom}
+.tree:before,.tree:after{
+  content:"";position:absolute;height:2px;background:#030207;
+  transform-origin:left center;
+}
+.tree:before{width:80px;left:-35px;top:22%;transform:rotate(-48deg)}
+.tree:after{width:70px;left:-8px;top:42%;transform:rotate(42deg)}
+.tree.t1{left:7%;height:42%;transform:rotate(-7deg)}
+.tree.t2{left:15%;height:28%;transform:rotate(8deg)}
+.tree.t3{right:12%;height:55%;transform:rotate(7deg)}
+.tree.t4{right:4%;height:34%;transform:rotate(-8deg)}
+
+.content{
+  position:relative;z-index:5;width:min(900px,90%);
+  padding:30px 20px;
+}
+.kicker{
+  font-size:clamp(10px,2.7vw,15px);letter-spacing:.28em;
+  font-weight:300;margin-bottom:48px;opacity:.9;
+}
+.title{
+  font-family:"Cormorant Garamond",serif;font-weight:400;
+  font-size:clamp(42px,10vw,92px);line-height:.94;
+  letter-spacing:.055em;text-transform:uppercase;
+  text-shadow:0 2px 25px rgba(0,0,0,.8);
+}
+.subtitle{
+  margin-top:28px;font-family:"Cormorant Garamond",serif;
+  font-size:clamp(18px,4.7vw,30px);font-style:italic;
+  letter-spacing:.08em;color:#ddd8e5;
+}
+.small{
+  font-size:clamp(11px,3vw,16px);letter-spacing:.22em;
+  text-transform:uppercase;font-weight:300;line-height:2;
+}
+.quote{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(29px,7.4vw,64px);line-height:1.08;
+  font-weight:400;letter-spacing:.025em;
+}
+.quote em{font-style:italic}
+.chapter{
+  font-size:clamp(13px,3.4vw,20px);letter-spacing:.42em;
+  font-weight:300;margin-bottom:20px;
+}
+.chapter-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(43px,10vw,86px);line-height:.95;
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.divider{
+  width:70px;height:1px;background:rgba(255,255,255,.7);
+  margin:30px auto;
+}
+.fade-line{opacity:0;transform:translateY(14px);transition:all 1.2s ease}
+.active .fade-line{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.4s}.d2{transition-delay:1.1s}.d3{transition-delay:1.9s}
+.d4{transition-delay:2.8s}.d5{transition-delay:3.6s}
+
+#intro .content{transform:translateY(3vh)}
+#intro .title{max-width:850px;margin:auto}
+#intro .kicker{margin-bottom:55px}
+.by{
+  position:absolute;bottom:7%;left:0;right:0;
+  font-size:10px;letter-spacing:.25em;opacity:.65;
+}
+
+.controls{
+  position:fixed;z-index:30;left:0;right:0;bottom:22px;
+  display:flex;justify-content:center;gap:10px;
+  opacity:.75;
+}
+button{
+  color:#fff;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.22);border-radius:30px;
+  padding:10px 16px;font:400 10px Montserrat,sans-serif;
+  letter-spacing:.16em;text-transform:uppercase;
+  backdrop-filter:blur(8px);cursor:pointer;
+}
+.progress{
+  position:fixed;z-index:31;top:0;left:0;height:2px;
+  width:0;background:rgba(255,255,255,.8);
+  transition:width .4s linear;
+}
+.tap{
+  position:fixed;z-index:20;inset:0;cursor:pointer;
+}
+.final-note{
+  margin-top:35px;font-family:"Cormorant Garamond",serif;
+  font-size:clamp(20px,5vw,32px);font-style:italic;
+  color:#d9d2e2;
+}
+@media(max-width:500px){
+  .moon{width:90px;height:90px;top:8%}
+  .horizon{bottom:12%;height:18%}
+  .tree{bottom:11%}
+}
+</style>
+</head>
+
+<body>
+
+<div class="sky"></div>
+<div class="stars" id="stars"></div>
+<div class="stars2" id="stars2"></div>
+<div class="moon"></div>
+<div class="horizon"></div>
+<div class="reflection"></div>
+<div class="tree t1"></div><div class="tree t2"></div>
+<div class="tree t3"></div><div class="tree t4"></div>
+
+<div class="progress" id="progress"></div>
+
+<!-- SCENE 1 -->
+<section class="scene active" id="intro">
+  <div class="content">
+    <div class="kicker fade-line d1">A TEASER MADE BY SISTOSO</div>
+    <div class="title fade-line d2">THE MAN WHO<br>STAYED<br><span style="font-size:.68em">AND THE WOMAN WHO PRAYED</span></div>
+    <div class="subtitle fade-line d3">A story about the days when love means staying beside someone.</div>
+  </div>
+  <div class="by">CHAPTER V • A NEW PAGE</div>
+</section>
+
+<!-- SCENE 2 -->
+<section class="scene">
+  <div class="content">
+    <div class="small fade-line d1">There were days...</div>
+    <div class="quote fade-line d2">“I could tell you were tired.”</div>
+    <div class="divider fade-line d3"></div>
+    <div class="small fade-line d4">Not the kind of tired<br>that sleep can fix.</div>
+  </div>
+</section>
+
+<!-- SCENE 3 -->
+<section class="scene">
+  <div class="content">
+    <div class="small fade-line d1">Sometimes life becomes</div>
+    <div class="quote fade-line d2">
+      <span>School.</span><br>
+      <span>Work.</span><br>
+      <span>Projects.</span><br>
+      <span>Practice.</span><br>
+      <span>People.</span><br>
+      <span>Expectations.</span>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 4 -->
+<section class="scene">
+  <div class="content">
+    <div class="small fade-line d1">And sometimes...</div>
+    <div class="quote fade-line d2">“Babawi ako.”</div>
+    <div class="divider fade-line d3"></div>
+    <div class="quote fade-line d4" style="font-size:clamp(25px,6.5vw,52px)">
+      But Wifey…<br>
+      <em>you never needed to apologize for being tired.</em>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 5 -->
+<section class="scene">
+  <div class="content">
+    <div class="quote fade-line d1">“I don't need every minute of your day.”</div>
+    <div class="divider fade-line d2"></div>
+    <div class="small fade-line d3">
+      If you're tired, rest.<br>
+      If you're overwhelmed, breathe.<br>
+      If you need time, focus.
+    </div>
+    <div class="final-note fade-line d4">When you're ready… I'll still be here.</div>
+  </div>
+</section>
+
+<!-- SCENE 6 -->
+<section class="scene">
+  <div class="content">
+    <div class="small fade-line d1">Because loving you isn't about</div>
+    <div class="quote fade-line d2">demanding every piece of your time.</div>
+    <div class="divider fade-line d3"></div>
+    <div class="small fade-line d4">Sometimes loving you means<br>giving you space to breathe.</div>
+  </div>
+</section>
+
+<!-- SCENE 7 -->
+<section class="scene">
+  <div class="content">
+    <div class="small fade-line d1">Then there is something I wish I could do...</div>
+    <div class="quote fade-line d2">“If I could carry some of your struggles for you…”</div>
+    <div class="quote fade-line d3"><em>I would.</em></div>
+  </div>
+</section>
+
+<!-- SCENE 8 -->
+<section class="scene">
+  <div class="content">
+    <div class="small fade-line d1">You don't have to become weak for me to help you.</div>
+    <div class="divider fade-line d2"></div>
+    <div class="quote fade-line d3">You can be strong…</div>
+    <div class="final-note fade-line d4">and still let someone love you through the difficult days.</div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="scene" id="final">
+  <div class="content">
+    <div class="chapter fade-line d1">CHAPTER V</div>
+    <div class="chapter-title fade-line d2">WHEN LIFE<br>BECAME<br>HEAVY</div>
+    <div class="divider fade-line d3"></div>
+    <div class="small fade-line d4">Some days, you don't have to be strong alone.</div>
+    <div class="final-note fade-line d5">The story continues… 🌷</div>
+  </div>
+</section>
+
+<div class="tap" id="tap"></div>
+
+<div class="controls">
+  <button id="back">← Back</button>
+  <button id="pause">Pause</button>
+  <button id="next">Next →</button>
+</div>
+
+<script>
+const scenes=[...document.querySelectorAll('.scene')];
+let current=0;
+let paused=false;
+let timer=null;
+const duration=6500;
+
+function makeStars(){
+  const containers=[document.getElementById('stars'),document.getElementById('stars2')];
+  containers.forEach((box,index)=>{
+    for(let i=0;i<(index?55:85);i++){
+      const s=document.createElement('i');
+      s.className='star';
+      s.style.left=(Math.random()*100)+'%';
+      s.style.top=(Math.random()*82)+'%';
+      s.style.width=s.style.height=(Math.random()<.8?1.3:2.4)+'px';
+      s.style.animationDelay=(Math.random()*4)+'s';
+      s.style.animationDuration=(2+Math.random()*4)+'s';
+      s.style.opacity=.2+Math.random()*.7;
+      box.appendChild(s);
+    }
+  });
+}
+makeStars();
+
+function show(n){
+  current=Math.max(0,Math.min(n,scenes.length-1));
+  scenes.forEach((s,i)=>s.classList.toggle('active',i===current));
+  document.getElementById('progress').style.width=((current)/(scenes.length-1)*100)+'%';
+  resetTimer();
+}
+function resetTimer(){
+  clearTimeout(timer);
+  if(!paused && current<scenes.length-1){
+    timer=setTimeout(()=>show(current+1),duration);
+  }
+}
+function togglePause(){
+  paused=!paused;
+  document.getElementById('pause').textContent=paused?'Play':'Pause';
+  resetTimer();
+}
+document.getElementById('next').onclick=()=>show(current+1);
+document.getElementById('back').onclick=()=>show(current-1);
+document.getElementById('pause').onclick=togglePause;
+
+document.getElementById('tap').addEventListener('click',e=>{
+  if(e.clientX<innerWidth*.35) show(current-1);
+  else show(current+1);
+});
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();show(current+1)}
+  if(e.key==='ArrowLeft')show(current-1);
+  if(e.key.toLowerCase()==='p')togglePause();
+});
+
+resetTimer();
+</script>
+</body>
+</html>
